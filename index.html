@@ -20,6 +20,7 @@
     --muted: #6c757d;
     --hero-overlay: rgba(11,27,37,0.45);
     --card-radius: 12px;
+    --badge-bg: #28a745;
   }
 
   body {
@@ -48,7 +49,29 @@
   .hero-section .overlay{ position:absolute; inset:0; background:var(--hero-overlay); z-index:0; }
   .hero-content { position:relative; z-index:2; padding:3.5rem 0; }
 
-  .card { border-radius: var(--card-radius); }
+  .card { border-radius: var(--card-radius); overflow:hidden; }
+
+  /* "Disponible" badge */
+  .status-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--badge-bg);
+    color: white;
+    padding: 6px 10px;
+    font-size: .85rem;
+    font-weight: 600;
+    border-radius: 999px;
+    display: inline-flex;
+    gap:.4rem;
+    align-items:center;
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+    z-index: 5;
+  }
+  .status-badge i { font-size:1rem; }
+
+  /* Card image wrapper so badge overlays */
+  .img-wrap { position: relative; display:block; }
 
   /* Modal / Carousel custom */
   .modal-gallery .modal-body { background: #fafafa; }
@@ -108,11 +131,11 @@
         </div>
         <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
           <div class="card shadow-lg property-card-hero">
-            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4a8aeafefad2a3b1aa6b33b3f1f0b6dd" class="card-img-top" alt="Propiedad destacada">
+            <img src="https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/1.jpg" class="card-img-top" alt="Principal - Disponible">
             <div class="card-body">
-              <h5 class="card-title mb-1">Apartamento moderno en el centro</h5>
-              <p class="card-text text-muted mb-0">2 habitaciones · 2 baños · Balcón · Seguridad 24h</p>
-              <p class="mt-2 mb-0"><strong>Desde $1.200.000 / mes</strong></p>
+              <h5 class="card-title mb-1">Propiedades destacadas</h5>
+              <p class="card-text text-muted mb-0">Espacios seleccionados listos para alquiler</p>
+              <p class="mt-2 mb-0"><strong>Consulte disponibilidad</strong></p>
             </div>
           </div>
         </div>
@@ -128,68 +151,8 @@
         <p class="text-muted small mb-0">Filtra por ubicación, precio y tipo</p>
       </div>
 
-      <div class="row g-4">
-        <!-- Card 1 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm h-100">
-            <!-- data-images: comma-separated -->
-            <img src="https://images.unsplash.com/photo-1598928506310-6a6c9b4b6f8b?q=80&w=1200&auto=format&fit=crop"
-                 class="card-img-top img-clickable"
-                 alt="Casa 1"
-                 role="button"
-                 data-title="Casa familiar en zona residencial"
-                 data-images="https://images.unsplash.com/photo-1598928506310-6a6c9b4b6f8b?q=80&w=1200&auto=format&fit=crop,https://images.unsplash.com/photo-1560443450-1b1a9d2a7f5b?q=80&w=1200&auto=format&fit=crop,https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Casa familiar en zona residencial</h5>
-              <p class="card-text text-muted">3 habitaciones · 2 baños · Jardín</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <strong class="text-primary">$1.800.000 / mes</strong>
-                <a href="tel:+573156204374" class="btn btn-sm btn-outline-primary">Llamar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm h-100">
-            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1200&auto=format&fit=crop"
-                 class="card-img-top img-clickable"
-                 alt="Apartamento 2"
-                 role="button"
-                 data-title="Apartamento moderno"
-                 data-images="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1200&auto=format&fit=crop,https://images.unsplash.com/photo-1598928506310-6a6c9b4b6f8b?q=80&w=1200&auto=format&fit=crop">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Apartamento moderno</h5>
-              <p class="card-text text-muted">2 habitaciones · 2 baños · Ascensor</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <strong class="text-primary">$1.200.000 / mes</strong>
-                <a class="btn btn-sm btn-outline-primary" href="https://wa.me/573156204374?text=Estoy%20interesado%20en%20el%20apartamento%20moderno." target="_blank" rel="noopener">WhatsApp</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm h-100">
-            <img src="https://images.unsplash.com/photo-1572120360610-d971b9b3f8f9?q=80&w=1200&auto=format&fit=crop"
-                 class="card-img-top img-clickable"
-                 alt="Local comercial"
-                 role="button"
-                 data-title="Local comercial - excelente ubicación"
-                 data-images="https://images.unsplash.com/photo-1572120360610-d971b9b3f8f9?q=80&w=1200&auto=format&fit=crop,https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1200&auto=format&fit=crop">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Local comercial - excelente ubicación</h5>
-              <p class="card-text text-muted">Área amplia · Vitrinas · Vigilancia</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <strong class="text-primary">$3.500.000 / mes</strong>
-                <a href="tel:+573156204374" class="btn btn-sm btn-outline-primary">Llamar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <div class="row g-4" id="propertiesGrid">
+        <!-- JS will populate cards here using a structured data array -->
       </div>
 
       <div class="text-center mt-5">
@@ -251,7 +214,7 @@
       <div class="row g-4 align-items-center">
         <div class="col-lg-6">
           <h3>Contáctenos</h3>
-          <p class="text-muted-compact">Estamos disponibles para responder sus consultas de lunes a viernes. También puede agendar una cita para visitar las propiedades.</p>
+          <p class="text-muted">Estamos disponibles para responder sus consultas de lunes a viernes. También puede agendar una cita para visitar las propiedades.</p>
 
           <ul class="list-unstyled">
             <li class="mb-2"><strong>Teléfono:</strong> <a class="text-white" href="tel:+573156204374">+57 315 620 4374</a></li>
@@ -309,9 +272,7 @@
         <div class="modal-body">
           <!-- Carousel -->
           <div id="propertyCarousel" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-inner" id="carouselInner">
-              <!-- slides injected by JS -->
-            </div>
+            <div class="carousel-inner" id="carouselInner"></div>
             <button class="carousel-control-prev" type="button" data-bs-target="#propertyCarousel" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Anterior</span>
@@ -320,10 +281,7 @@
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Siguiente</span>
             </button>
-            <!-- Indicators (optional) -->
-            <div class="mt-3" id="carouselIndicatorsRow" style="min-height:76px;">
-              <!-- thumbnails injected by JS -->
-            </div>
+            <div class="mt-3" id="carouselIndicatorsRow" style="min-height:76px;"></div>
           </div>
         </div>
         <div class="modal-footer">
@@ -351,154 +309,238 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    // Set year
-    document.getElementById('year').textContent = new Date().getFullYear();
+  // ==========================
+  // CONFIG: propiedades (organizado)
+  // Cada propiedad tiene: id, title, price, features, images[], available (bool)
+  // The user provided a main image and asked to add several specific Supabase-hosted images
+  // into the carousel only; those URLs have been placed into the first property's images array (after main).
+  // ==========================
+  const properties = [
+    {
+      id: 'p1',
+      title: 'Casa familiar en zona residencial / Jamundi (Barrio la pradera)',
+      price: '$1.100.000 / mes',
+      features: '3 habitaciones · 3 baños · Garaje · Jardín',
+      available: true,
+      // main image first (as requested), then the additional Supabase links (only used in carousel)
+      images: [
+        'https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/1.jpg',
+        'https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/Imagen%20de%20WhatsApp%202025-10-30%20a%20las%2009.45.42_4a16d75b.jpg',
+        'https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/Imagen%20de%20WhatsApp%202025-10-30%20a%20las%2009.45.43_295639c9.jpg',
+        'https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/Imagen%20de%20WhatsApp%202025-10-30%20a%20las%2009.45.43_6f5cd416.jpg',
+        'https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/Imagen%20de%20WhatsApp%202025-10-30%20a%20las%2009.45.43_eb47a438.jpg'
+      ]
+    },
+ 
+  ];
 
-    // Contact form (simulado)
-    (function(){
-      const form = document.getElementById('contactForm');
-      const alertEl = document.getElementById('formAlert');
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        const name = document.getElementById('name').value.trim();
-        const contact = document.getElementById('contact').value.trim();
-        const message = document.getElementById('message').value.trim();
-        if (!name || !contact || !message) {
-          alert('Por favor complete todos los campos.');
-          return;
-        }
-        alertEl.classList.remove('d-none');
-        setTimeout(()=> { alertEl.classList.add('d-none'); form.reset(); }, 3000);
-      });
-    })();
+  // Set year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Smooth scroll for internal links
-    document.querySelectorAll('a.nav-link, a[href^="#"]').forEach(link => {
-      link.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) {
-            const offset = 70;
-            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({ top, behavior: 'smooth' });
-            const navbarToggler = document.querySelector('.navbar-collapse.show');
-            if (navbarToggler) new bootstrap.Collapse(navbarToggler).hide();
-          }
-        }
-      });
+  // Render property cards from the structured array
+  (function renderProperties() {
+    const grid = document.getElementById('propertiesGrid');
+    grid.innerHTML = '';
+    properties.forEach(prop => {
+      const col = document.createElement('div');
+      col.className = 'col-md-6 col-lg-4';
+
+      // Card markup
+      const card = document.createElement('div');
+      card.className = 'card shadow-sm h-100';
+
+      // Image wrapper so we can overlay badge
+      const imgWrap = document.createElement('div');
+      imgWrap.className = 'img-wrap';
+
+      // status badge (only if available)
+      if (prop.available) {
+        const badge = document.createElement('div');
+        badge.className = 'status-badge';
+        badge.innerHTML = `<i class="bi bi-check-circle"></i> Disponible`;
+        imgWrap.appendChild(badge);
+      }
+
+      // main image (first in images array)
+      const img = document.createElement('img');
+      img.className = 'card-img-top img-clickable';
+      img.alt = prop.title;
+      img.src = prop.images[0] || '';
+      img.loading = 'lazy';
+      // store structured data in dataset (stringified JSON) for easier reading later
+      img.dataset.prop = JSON.stringify(prop);
+
+      // Make image accessible as button
+      img.setAttribute('role', 'button');
+      img.style.objectFit = 'cover';
+      img.style.height = '220px';
+      imgWrap.appendChild(img);
+
+      // Card body
+      const body = document.createElement('div');
+      body.className = 'card-body d-flex flex-column';
+
+      const h5 = document.createElement('h5');
+      h5.className = 'card-title';
+      h5.textContent = prop.title;
+
+      const pFeat = document.createElement('p');
+      pFeat.className = 'card-text text-muted';
+      pFeat.textContent = prop.features;
+
+      const footer = document.createElement('div');
+      footer.className = 'mt-auto d-flex justify-content-between align-items-center';
+
+      const price = document.createElement('strong');
+      price.className = 'text-primary';
+      price.textContent = prop.price;
+
+      const callBtn = document.createElement('a');
+      callBtn.className = 'btn btn-sm btn-outline-primary';
+      callBtn.href = 'tel:+573156204374';
+      callBtn.textContent = 'Llamar';
+
+      footer.appendChild(price);
+      footer.appendChild(callBtn);
+
+      body.appendChild(h5);
+      body.appendChild(pFeat);
+      body.appendChild(footer);
+
+      card.appendChild(imgWrap);
+      card.appendChild(body);
+      col.appendChild(card);
+      grid.appendChild(col);
     });
 
-    // Modal + Carousel logic
-    (function(){
-      const modalEl = document.getElementById('propertyModal');
-      const bsModal = new bootstrap.Modal(modalEl);
-      const carouselInner = document.getElementById('carouselInner');
-      const indicatorsRow = document.getElementById('carouselIndicatorsRow');
-      const modalTitle = document.getElementById('propertyModalLabel');
-      const modalWhatsappBtn = document.getElementById('modalWhatsappBtn');
-
-      // Utility: create slide element
-      function createSlide(imgUrl, active) {
-        const div = document.createElement('div');
-        div.className = 'carousel-item' + (active ? ' active' : '');
-        const img = document.createElement('img');
-        img.src = imgUrl;
-        img.alt = 'Foto propiedad';
-        img.loading = 'lazy';
-        img.className = '';
-        div.appendChild(img);
-        return div;
-      }
-
-      // Utility: create thumbnail element
-      function createThumb(url, idx, onClick) {
-        const d = document.createElement('div');
-        d.className = 'thumb';
-        d.dataset.index = idx;
-        d.innerHTML = `<img src="${url}" alt="thumb ${idx+1}">`;
-        d.addEventListener('click', onClick);
-        return d;
-      }
-
-      // On click of an image in the grid/cards
-      document.querySelectorAll('.img-clickable').forEach(img => {
-        img.addEventListener('click', function(){
-          const title = this.dataset.title || 'Propiedad';
-          const imagesRaw = this.dataset.images || this.src;
-          const images = imagesRaw.split(',').map(s => s.trim()).filter(Boolean);
-          if (images.length === 0) images.push(this.src);
-
-          // Set title and WA link
-          modalTitle.textContent = title;
-          modalWhatsappBtn.href = 'https://wa.me/573156204374?text=' + encodeURIComponent('Buen día, quisiera consultar sobre: ' + title);
-
-          // Clear previous
-          carouselInner.innerHTML = '';
-          indicatorsRow.innerHTML = '';
-
-          // Build slides
-          images.forEach((url, i) => {
-            const slide = createSlide(url, i === 0);
-            carouselInner.appendChild(slide);
-          });
-
-          // Build thumbnails row
-          const thumbsContainer = document.createElement('div');
-          thumbsContainer.className = 'thumbs-row';
-          images.forEach((url, i) => {
-            const thumb = createThumb(url, i, () => {
-              const carouselEl = document.querySelector('#propertyCarousel');
-              const carousel = bootstrap.Carousel.getInstance(carouselEl) || new bootstrap.Carousel(carouselEl, { interval: false, ride: false });
-              carousel.to(i);
-              // update active thumb visuals
-              thumbsContainer.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-              thumb.classList.add('active');
-            });
-            if (i === 0) thumb.classList.add('active');
-            thumbsContainer.appendChild(thumb);
-          });
-          indicatorsRow.appendChild(thumbsContainer);
-
-          // When slide changes, update active thumbnail
-          const carouselEl = document.getElementById('propertyCarousel');
-          // destroy previous instance if exists to avoid duplicate listeners
-          try {
-            const prev = bootstrap.Carousel.getInstance(carouselEl);
-            if (prev) prev.dispose();
-          } catch(e){ /* ignore */ }
-
-          // initialize carousel (no auto)
-          const carousel = new bootstrap.Carousel(carouselEl, { interval: false, touch: true, ride: false });
-
-          carouselEl.addEventListener('slid.bs.carousel', function(ev){
-            const idx = ev.to;
-            const thumbs = indicatorsRow.querySelectorAll('.thumb');
-            thumbs.forEach(t => t.classList.remove('active'));
-            const activeThumb = indicatorsRow.querySelector('.thumb[data-index="'+idx+'"]');
-            if (activeThumb) activeThumb.classList.add('active');
-            // Scroll thumbnail row to show active thumb on small screens
-            if (activeThumb && activeThumb.scrollIntoView) activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-          }, { once: false });
-
-          // Show modal
-          bsModal.show();
-        });
-      });
-
-      // Cleanup when modal closed
-      modalEl.addEventListener('hidden.bs.modal', function(){
-        // dispose carousel instance and remove slides to free memory
-        const carouselEl = document.getElementById('propertyCarousel');
+    // After DOM insertion, wire click handlers to .img-clickable
+    document.querySelectorAll('.img-clickable').forEach(imgEl => {
+      imgEl.addEventListener('click', function() {
+        // Retrieve property object from dataset
+        let prop;
         try {
-          const inst = bootstrap.Carousel.getInstance(carouselEl);
-          if (inst) inst.dispose();
-        } catch(e){}
-        carouselInner.innerHTML = '';
-        indicatorsRow.innerHTML = '';
+          prop = JSON.parse(this.dataset.prop || '{}');
+        } catch(e) {
+          prop = { title: this.alt || 'Propiedad', images: [this.src] };
+        }
+        openGalleryModal(prop);
       });
-    })();
+    });
+  })();
+
+  // Modal + Carousel logic (re-usable)
+  (function setupModal() {
+    const modalEl = document.getElementById('propertyModal');
+    const bsModal = new bootstrap.Modal(modalEl);
+    const carouselInner = document.getElementById('carouselInner');
+    const indicatorsRow = document.getElementById('carouselIndicatorsRow');
+    const modalTitle = document.getElementById('propertyModalLabel');
+    const modalWhatsappBtn = document.getElementById('modalWhatsappBtn');
+
+    // Build slides and thumbs then show modal
+    window.openGalleryModal = function(prop) {
+      const images = Array.isArray(prop.images) && prop.images.length ? prop.images : [prop.image || prop.src || ''];
+      modalTitle.textContent = prop.title || 'Propiedad';
+      modalWhatsappBtn.href = 'https://wa.me/573156204374?text=' + encodeURIComponent('Buen día, quisiera consultar sobre: ' + (prop.title || ''));
+
+      // clear
+      carouselInner.innerHTML = '';
+      indicatorsRow.innerHTML = '';
+
+      // create slides
+      images.forEach((url, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-item' + (i === 0 ? ' active' : '');
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = `${prop.title} - foto ${i+1}`;
+        img.loading = 'lazy';
+        slide.appendChild(img);
+        carouselInner.appendChild(slide);
+      });
+
+      // thumbs
+      const thumbsContainer = document.createElement('div');
+      thumbsContainer.className = 'thumbs-row';
+      images.forEach((url, i) => {
+        const thumb = document.createElement('div');
+        thumb.className = 'thumb' + (i === 0 ? ' active' : '');
+        thumb.dataset.index = i;
+        thumb.innerHTML = `<img src="${url}" alt="mini ${i+1}">`;
+        thumb.addEventListener('click', () => {
+          const carouselEl = document.querySelector('#propertyCarousel');
+          const carousel = bootstrap.Carousel.getInstance(carouselEl) || new bootstrap.Carousel(carouselEl, { interval: false, ride: false });
+          carousel.to(i);
+          // update active visuals
+          thumbsContainer.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+        });
+        thumbsContainer.appendChild(thumb);
+      });
+      indicatorsRow.appendChild(thumbsContainer);
+
+      // setup carousel instance
+      const carouselEl = document.getElementById('propertyCarousel');
+      try { const prev = bootstrap.Carousel.getInstance(carouselEl); if (prev) prev.dispose(); } catch(e) {}
+      const carousel = new bootstrap.Carousel(carouselEl, { interval: false, touch: true, ride: false });
+
+      // Sync thumb when slide changes
+      carouselEl.addEventListener('slid.bs.carousel', function(ev) {
+        const idx = ev.to;
+        const thumbs = indicatorsRow.querySelectorAll('.thumb');
+        thumbs.forEach(t => t.classList.remove('active'));
+        const active = indicatorsRow.querySelector('.thumb[data-index="'+idx+'"]');
+        if (active) active.classList.add('active');
+        if (active && active.scrollIntoView) active.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+      });
+
+      bsModal.show();
+    };
+
+    // cleanup on modal hide
+    modalEl.addEventListener('hidden.bs.modal', function(){
+      const carouselEl = document.getElementById('propertyCarousel');
+      try { const inst = bootstrap.Carousel.getInstance(carouselEl); if (inst) inst.dispose(); } catch(e){}
+      carouselInner.innerHTML = '';
+      indicatorsRow.innerHTML = '';
+    });
+  })();
+
+  // Contact form (simulado)
+  (function(){
+    const form = document.getElementById('contactForm');
+    const alertEl = document.getElementById('formAlert');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const contact = document.getElementById('contact').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!name || !contact || !message) {
+        alert('Por favor complete todos los campos.');
+        return;
+      }
+      alertEl.classList.remove('d-none');
+      setTimeout(()=> { alertEl.classList.add('d-none'); form.reset(); }, 3000);
+    });
+  })();
+
+  // Smooth scroll for internal links
+  document.querySelectorAll('a.nav-link, a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const offset = 70;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+          const navbarToggler = document.querySelector('.navbar-collapse.show');
+          if (navbarToggler) new bootstrap.Collapse(navbarToggler).hide();
+        }
+      }
+    });
+  });
   </script>
 </body>
 </html>
