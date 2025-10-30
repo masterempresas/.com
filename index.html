@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Master Empresas - Inmuebles en Alquiler</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <style>
+  /* --------------------------
+     Estilos embebidos (todo en un archivo)
+     --------------------------*/
+  :root{
+    --primary: #0d6efd;
+    --muted: #6c757d;
+    --dark: #121212;
+    --accent: #0b5ed7;
+    --hero-overlay: rgba(11, 27, 37, 0.45);
+    --card-radius: 12px;
+    --glass: rgba(255,255,255,0.06);
+  }
+
+  body {
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: #fff;
+    color: #222;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* Brand title */
+  .brand-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.2px;
+  }
+
+  /* Navbar tweaks */
+  .navbar-brand svg { filter: drop-shadow(0 1px 0 rgba(0,0,0,0.15)); }
+
+  /* Hero */
+  .hero-section{
+    position: relative;
+    min-height: 62vh;
+    background-image: linear-gradient(120deg, rgba(10,15,28,0.5), rgba(34,40,54,0.15)), url('https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=fa2e8b4b6f2d5e8ad2a9a3c4b1c2d3e4');
+    background-size: cover;
+    background-position: center center;
+    color: white;
+    overflow: hidden;
+  }
+
+  .hero-section .overlay{
+    position: absolute;
+    inset: 0;
+    background: var(--hero-overlay);
+    backdrop-filter: blur(0.8px);
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 2; padding-top: 3.5rem; padding-bottom: 3.5rem; }
+
+  .property-card-hero {
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  /* Sections */
+  .section-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.6rem;
+    margin-bottom: 0;
+  }
+
+  /* Cards and features */
+  .card {
+    border-radius: var(--card-radius);
+  }
+
+  .feature {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.94));
+  }
+
+  /* Contact form */
+  #contactForm .form-control {
+    border-radius: 8px;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* Small helpers */
+  .text-muted-compact { color: rgba(255,255,255,0.78); }
+
+  /* Responsive tweaks */
+  @media (max-width: 991px){
+    .hero-section{ min-height: 56vh; }
+    .brand-title { font-size: 0.98rem; }
+  }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M6.5 11.5v-1h1v1h-1zM7 2.5v-.5a.5.5 0 0 1 .5-.5H9v13H1V2h6.5a.5.5 0 0 1 .5.5zM10 1v14H9v-1H8v1H7v-1H6v1H5V1h5z"/>
+        </svg>
+        <span class="ms-2 brand-title">Master Empresas</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#propiedades">Propiedades</a></li>
+          <li class="nav-item"><a class="nav-link" href="#quienes-somos">Quiénes Somos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#vision-mision">Visión / Misión</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contáctenos</a></li>
+          <li class="nav-item ms-2 d-none d-lg-block">
+            <a class="btn btn-outline-light btn-sm" href="tel:+573156204374"><i class="bi-telephone"></i> Llamar</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="inicio" class="hero-section text-white d-flex align-items-center">
+    <div class="overlay" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold">Encuentra el espacio perfecto para vivir o invertir</h1>
+          <p class="lead my-4">Propiedades seleccionadas con estilo, seguridad y ubicación estratégica. Alquileres disponibles — ambiente familiar y profesional.</p>
+          <p class="mb-4">
+            <a href="#propiedades" class="btn btn-primary btn-lg me-2">Ver propiedades</a>
+            <a href="https://wa.me/573156204374?text=Buen%20d%C3%ADa,%20quisiera%20consultar%20si%20actualmente%20hay%20disponibilidad%20de%20inmuebles%20en%20alquiler." class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">Contactar por WhatsApp</a>
+          </p>
+          <p class="small">O llámanos: <a class="text-white fw-bold" href="tel:+573156204374">+57 315 620 4374</a></p>
+        </div>
+        <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
+          <div class="card shadow-lg property-card-hero">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4a8aeafefad2a3b1aa6b33b3f1f0b6dd" class="card-img-top" alt="Propiedad destacada">
+            <div class="card-body">
+              <h5 class="card-title mb-1">Apartamento moderno en el centro</h5>
+              <p class="card-text text-muted mb-0">2 habitaciones · 2 baños · Balcón · Seguridad 24h</p>
+              <p class="mt-2 mb-0"><strong>Desde $1.200.000 / mes</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Propiedades -->
+  <section id="propiedades" class="py-6">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title">Propiedades en alquiler</h2>
+        <p class="text-muted small mb-0">Filtra por ubicación, precio y tipo</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://images.unsplash.com/photo-1598928506310-6a6c9b4b6f8b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=8c1a0b3ef6bdceefb7a0f8b2c9c0f4a1" class="card-img-top" alt="Casa 1">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Casa familiar en zona residencial</h5>
+              <p class="card-text text-muted">3 habitaciones · 2 baños · Jardín</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <strong class="text-primary">$1.800.000 / mes</strong>
+                <a href="tel:+573156204374" class="btn btn-sm btn-outline-primary">Llamar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4a8aeafefad2a3b1aa6b33b3f1f0b6dd" class="card-img-top" alt="Apartamento 2">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Apartamento moderno</h5>
+              <p class="card-text text-muted">2 habitaciones · 2 baños · Ascensor</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <strong class="text-primary">$1.200.000 / mes</strong>
+                <a class="btn btn-sm btn-outline-primary" href="https://wa.me/573156204374?text=Estoy%20interesado%20en%20el%20apartamento%20moderno." target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://images.unsplash.com/photo-1572120360610-d971b9b3f8f9?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=7a0a8b6d2e2f5e1a7a3c9d7e5b2c1f4d" class="card-img-top" alt="Local comercial">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Local comercial - excelente ubicación</h5>
+              <p class="card-text text-muted">Área amplia · Vitrinas · Vigilancia</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <strong class="text-primary">$3.500.000 / mes</strong>
+                <a href="tel:+573156204374" class="btn btn-sm btn-outline-primary">Llamar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-5">
+        <a class="btn btn-outline-secondary" href="#contacto">Solicitar más propiedades</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiénes somos -->
+  <section id="quienes-somos" class="py-5 bg-light">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <h3>Quiénes Somos</h3>
+          <p class="text-muted">Master Empresas es una compañía dedicada a la intermediación y gestión de inmuebles en alquiler. Combinamos conocimiento del mercado, transparencia y atención personalizada para que nuestros clientes encuentren la mejor opción.</p>
+          <ul class="list-unstyled">
+            <li class="mb-2"><strong>Experiencia:</strong> Asesoría profesional y cercana.</li>
+            <li class="mb-2"><strong>Seguridad:</strong> Propiedades verificadas y contratos claros.</li>
+            <li class="mb-2"><strong>Soporte:</strong> Atención poscontrato y mantenimiento.</li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <img src="https://images.unsplash.com/photo-1505691723518-34d3ad1ca3d6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=6e8f8d6e3f7b4c5f8f2e2c9f1d1b3e6c" alt="Equipo" class="img-fluid rounded shadow-sm">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision / Mision / Objetivo -->
+  <section id="vision-mision" class="py-5">
+    <div class="container">
+      <h3 class="mb-4">Visión · Misión · Objetivo</h3>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature p-4 h-100 shadow-sm rounded">
+            <h5 class="mb-2">Visión</h5>
+            <p class="text-muted mb-0">Ser la referencia regional en soluciones de vivienda y espacios comerciales, promoviendo desarrollo urbano sostenible y bienestar para nuestros clientes.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature p-4 h-100 shadow-sm rounded">
+            <h5 class="mb-2">Misión</h5>
+            <p class="text-muted mb-0">Ofrecer propiedades seleccionadas con asesoría experta, procesos transparentes y acompañamiento continuo para inquilinos y propietarios.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature p-4 h-100 shadow-sm rounded">
+            <h5 class="mb-2">Objetivo</h5>
+            <p class="text-muted mb-0">Conectar personas con espacios adecuados que impulsen calidad de vida y crecimiento de negocios, garantizando confianza y cumplimiento contractual.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="py-6 bg-dark text-white">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <h3>Contáctenos</h3>
+          <p class="text-muted-compact">Estamos disponibles para responder sus consultas de lunes a viernes. También puede agendar una cita para visitar las propiedades.</p>
+
+          <ul class="list-unstyled">
+            <li class="mb-2"><strong>Teléfono:</strong> <a class="text-white" href="tel:+573156204374">+57 315 620 4374</a></li>
+            <li class="mb-2"><strong>WhatsApp:</strong> <a class="text-white" href="https://wa.me/573156204374?text=Buen%20d%C3%ADa,%20quisiera%20consultar%20si%20actualmente%20hay%20disponibilidad%20de%20inmuebles%20en%20alquiler." target="_blank" rel="noopener">Enviar mensaje</a></li>
+            <li class="mb-2"><strong>Email:</strong> <a class="text-white" href="mailto:info@masterempresas.com">info@masterempresas.com</a></li>
+          </ul>
+
+          <div class="mt-4">
+            <a class="btn btn-outline-light me-2" href="tel:+573156204374">Llamar ahora</a>
+            <a class="btn btn-success" href="https://wa.me/573156204374?text=Buen%20d%C3%ADa,%20quisiera%20consultar%20si%20actualmente%20hay%20disponibilidad%20de%20inmuebles%20en%20alquiler." target="_blank" rel="noopener">
+              <i class="bi bi-whatsapp me-2"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card bg-light text-dark shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Envíenos un mensaje</h5>
+              <form id="contactForm" novalidate>
+                <div class="mb-3">
+                  <label class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="name" placeholder="Su nombre" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Teléfono o correo</label>
+                  <input type="text" class="form-control" id="contact" placeholder="Teléfono o email" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Mensaje</label>
+                  <textarea class="form-control" id="message" rows="4" placeholder="Cuéntenos qué necesita" required></textarea>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+                  <small class="text-muted">También puede escribir por WhatsApp</small>
+                </div>
+              </form>
+              <div id="formAlert" class="alert alert-success mt-3 d-none" role="alert">
+                Gracias, su mensaje fue enviado (simulado). Nos contactaremos pronto.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-secondary text-light">
+    <div class="container d-flex justify-content-between align-items-center">
+      <small>© <span id="year"></span> Master Empresas. Todos los derechos reservados.</small>
+      <div>
+        <a class="text-light me-3" href="#vision-mision">Visión</a>
+        <a class="text-light me-3" href="#quienes-somos">Quiénes</a>
+        <a class="text-light" href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simulated form handler
+    (function(){
+      const form = document.getElementById('contactForm');
+      const alertEl = document.getElementById('formAlert');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Simple validation
+        const name = document.getElementById('name').value.trim();
+        const contact = document.getElementById('contact').value.trim();
+        const message = document.getElementById('message').value.trim();
+        if (!name || !contact || !message) {
+          alert('Por favor complete todos los campos.');
+          return;
+        }
+
+        // Show simulated success
+        alertEl.classList.remove('d-none');
+
+        // In production: enviar datos a un backend vía fetch / AJAX
+        // Ejemplo:
+        // fetch('/api/contact', { method: 'POST', body: JSON.stringify({name,contact,message}), headers: {'Content-Type':'application/json'} })
+
+        setTimeout(() => {
+          alertEl.classList.add('d-none');
+          form.reset();
+        }, 3000);
+      });
+    })();
+
+    // Smooth scroll for navbar and internal links
+    document.querySelectorAll('a.nav-link, a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const offset = 70;
+            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+            // close navbar on mobile
+            const navbarToggler = document.querySelector('.navbar-collapse.show');
+            if (navbarToggler) {
+              new bootstrap.Collapse(navbarToggler).hide();
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
