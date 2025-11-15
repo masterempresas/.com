@@ -1,546 +1,77 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Master Empresas - Inmuebles en Alquiler</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Master Empresas S.A.S</title>
 
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0f1f;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+        .banner {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
 
-  <style>
-  :root{
-    --primary: #0d6efd;
-    --muted: #6c757d;
-    --hero-overlay: rgba(11,27,37,0.45);
-    --card-radius: 12px;
-    --badge-bg: #28a745;
-  }
+        .banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-  body {
-    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: #fff;
-    color: #222;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-  }
+        .section-title {
+            font-weight: 700;
+            text-align: center;
+            margin: 40px 0 20px;
+            color: #c5e6ff;
+        }
 
-  .brand-title {
-    font-family: "Playfair Display", serif;
-    font-weight: 700;
-    font-size: 1.05rem;
-  }
-
-  .hero-section{
-    position: relative;
-    min-height: 62vh;
-    background-image: linear-gradient(120deg, rgba(10,15,28,0.5), rgba(34,40,54,0.15)), url('https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=fa2e8b4b6f2d5e8ad2a9a3c4b1c2d3e4');
-    background-size: cover;
-    background-position: center center;
-    color: white;
-    overflow: hidden;
-  }
-  .hero-section .overlay{ position:absolute; inset:0; background:var(--hero-overlay); z-index:0; }
-  .hero-content { position:relative; z-index:2; padding:3.5rem 0; }
-
-  .card { border-radius: var(--card-radius); overflow:hidden; }
-
-  /* "Disponible" badge */
-  .status-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: var(--badge-bg);
-    color: white;
-    padding: 6px 10px;
-    font-size: .85rem;
-    font-weight: 600;
-    border-radius: 999px;
-    display: inline-flex;
-    gap:.4rem;
-    align-items:center;
-    box-shadow: 0 6px 18px rgba(0,0,0,.12);
-    z-index: 5;
-  }
-  .status-badge i { font-size:1rem; }
-
-  /* Card image wrapper so badge overlays */
-  .img-wrap { position: relative; display:block; }
-
-  /* Modal / Carousel custom */
-  .modal-gallery .modal-body { background: #fafafa; }
-  .carousel-item img { width: 100%; height: 420px; object-fit: cover; border-radius: 8px; }
-  .thumbs-row { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem; }
-  .thumb { width:72px; height:72px; overflow:hidden; border-radius:6px; cursor:pointer; border:2px solid transparent; transition:transform .12s, border-color .12s; }
-  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
-  .thumb.active { border-color: var(--primary); transform:translateY(-3px); }
-
-  @media (max-width:576px){ .carousel-item img { height: 240px; } .thumb{ width:56px; height:56px; } }
-  </style>
+        .footer {
+            background: #000;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+            color: #9ab6d1;
+        }
+    </style>
 </head>
+
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M6.5 11.5v-1h1v1h-1zM7 2.5v-.5a.5.5 0 0 1 .5-.5H9v13H1V2h6.5a.5.5 0 0 1 .5.5zM10 1v14H9v-1H8v1H7v-1H6v1H5V1h5z"/>
-        </svg>
-        <span class="ms-2 brand-title">Master Empresas</span>
-      </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#propiedades">Propiedades</a></li>
-          <li class="nav-item"><a class="nav-link" href="#quienes-somos">Quiénes Somos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#vision-mision">Visión / Misión</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contacto">Contáctenos</a></li>
-          <li class="nav-item ms-2 d-none d-lg-block">
-            <a class="btn btn-outline-light btn-sm" href="tel:+573156204374"><i class="bi-telephone"></i> Llamar</a>
-          </li>
-        </ul>
-      </div>
+    <!-- ================== BANNER 1 ================== -->
+    <div class="banner">
+        <img src="BANNER1.png" alt="Banner Master Empresas" class="img-fluid">
     </div>
-  </nav>
 
-  <!-- Hero -->
-  <header id="inicio" class="hero-section text-white d-flex align-items-center">
-    <div class="overlay" aria-hidden="true"></div>
-    <div class="container hero-content">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <h1 class="display-5 fw-bold">Encuentra el espacio perfecto para vivir o invertir</h1>
-          <p class="lead my-4">Propiedades seleccionadas con estilo, seguridad y ubicación estratégica. Alquileres disponibles — ambiente familiar y profesional.</p>
-          <p class="mb-4">
-            <a href="#propiedades" class="btn btn-primary btn-lg me-2">Ver propiedades</a>
-            <a href="https://wa.me/573156204374?text=Buen%20d%C3%ADa,%20quisiera%20consultar%20si%20actualmente%20hay%20disponibilidad%20de%20inmuebles%20en%20alquiler." class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">Contactar por WhatsApp</a>
-          </p>
-          <p class="small">O llámanos: <a class="text-white fw-bold" href="tel:+573156204374">+57 315 620 4374</a></p>
-        </div>
-        <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
-          <div class="card shadow-lg property-card-hero">
-            <img src="https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/1.jpg" class="card-img-top" alt="Principal - Disponible">
-            <div class="card-body">
-              <h5 class="card-title mb-1">Propiedades destacadas</h5>
-              <p class="card-text text-muted mb-0">Espacios seleccionados listos para alquiler</p>
-              <p class="mt-2 mb-0"><strong>Consulte disponibilidad</strong></p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- ================== SECCIÓN INFO ================== -->
+    <div class="container mt-5">
+        <h2 class="section-title">Bienvenido a Master Empresas S.A.S</h2>
+        <p class="text-center fs-5">
+            Impulsamos el crecimiento empresarial mediante soluciones tecnológicas avanzadas,
+            innovación digital y estrategias modernas adaptadas al futuro.
+        </p>
     </div>
-  </header>
 
-  <!-- Propiedades -->
-  <section id="propiedades" class="py-6">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="section-title">Propiedades en alquiler</h2>
-        <p class="text-muted small mb-0">Filtra por ubicación, precio y tipo</p>
-      </div>
-
-      <div class="row g-4" id="propertiesGrid">
-        <!-- JS will populate cards here using a structured data array -->
-      </div>
-
-      <div class="text-center mt-5">
-        <a class="btn btn-outline-secondary" href="#contacto">Solicitar más propiedades</a>
-      </div>
+    <!-- ================== BANNER 2 ================== -->
+    <div class="banner mt-4">
+        <img src="Banner2.png" alt="Tecnología Master Empresas" class="img-fluid">
     </div>
-  </section>
 
-  <!-- Quiénes somos -->
-  <section id="quienes-somos" class="py-5 bg-light">
-    <div class="container">
-      <div class="row g-4 align-items-center">
-        <div class="col-lg-6">
-          <h3>Quiénes Somos</h3>
-          <p class="text-muted">Master Empresas es una compañía dedicada a la intermediación y gestión de inmuebles en alquiler. Combinamos conocimiento del mercado, transparencia y atención personalizada para que nuestros clientes encuentren la mejor opción.</p>
-          <ul class="list-unstyled">
-            <li class="mb-2"><strong>Experiencia:</strong> Asesoría profesional y cercana.</li>
-            <li class="mb-2"><strong>Seguridad:</strong> Propiedades verificadas y contratos claros.</li>
-            <li class="mb-2"><strong>Soporte:</strong> Atención poscontrato y mantenimiento.</li>
-          </ul>
-        </div>
-        <div class="col-lg-6">
-          <img src="https://images.unsplash.com/photo-1505691723518-34d3ad1ca3d6?q=80&w=1200&auto=format&fit=crop" alt="Equipo" class="img-fluid rounded shadow-sm">
-        </div>
-      </div>
+    <!-- ================== FOOTER ================== -->
+    <div class="footer">
+        © 2025 Master Empresas S.A.S – Innovación para tu negocio
     </div>
-  </section>
 
-  <!-- Vision / Mision / Objetivo -->
-  <section id="vision-mision" class="py-5">
-    <div class="container">
-      <h3 class="mb-4">Nuestra Organización</h3>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="feature p-4 h-100 shadow-sm rounded">
-            <h5 class="mb-2">Visión</h5>
-            <p class="text-muted mb-0">Ser la referencia regional en soluciones de vivienda y espacios comerciales, promoviendo desarrollo urbano sostenible y bienestar para nuestros clientes.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="feature p-4 h-100 shadow-sm rounded">
-            <h5 class="mb-2">Misión</h5>
-            <p class="text-muted mb-0">Ofrecer propiedades seleccionadas con asesoría experta, procesos transparentes y acompañamiento continuo para inquilinos y propietarios.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="feature p-4 h-100 shadow-sm rounded">
-            <h5 class="mb-2">Objetivo</h5>
-            <p class="text-muted mb-0">Conectar personas con espacios adecuados que impulsen calidad de vida y crecimiento de negocios, garantizando confianza y cumplimiento contractual.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Contacto -->
-  <section id="contacto" class="py-6 bg-dark text-white">
-    <div class="container">
-      <div class="row g-4 align-items-center">
-        <div class="col-lg-6">
-          <h3>Contáctenos</h3>
-          <p class="text-muted">Estamos disponibles para responder sus consultas de lunes a viernes. También puede agendar una cita para visitar las propiedades.</p>
-
-          <ul class="list-unstyled">
-            <li class="mb-2"><strong>Teléfono:</strong> <a class="text-white" href="tel:+573156204374">+57 315 620 4374</a></li>
-            <li class="mb-2"><strong>WhatsApp:</strong> <a class="text-white" href="https://wa.me/573156204374?text=Buen%20d%C3%ADa,%20quisiera%20consultar%20si%20actualmente%20hay%20disponibilidad%20de%20inmuebles%20en%20alquiler." target="_blank" rel="noopener">Enviar mensaje</a></li>
-            <li class="mb-2"><strong>Email:</strong> <a class="text-white" href="mailto:info@masterempresas.com">info@masterempresas.com</a></li>
-          </ul>
-
-          <div class="mt-4">
-            <a class="btn btn-outline-light me-2" href="tel:+573156204374">Llamar ahora</a>
-            <a class="btn btn-success" href="https://wa.me/573156204374?text=Buen%20d%C3%ADa,%20quisiera%20consultar%20si%20actualmente%20hay%20disponibilidad%20de%20inmuebles%20en%20alquiler." target="_blank" rel="noopener">
-              <i class="bi bi-whatsapp me-2"></i> WhatsApp
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card bg-light text-dark shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Envíenos un mensaje</h5>
-              <form id="contactForm" novalidate>
-                <div class="mb-3">
-                  <label class="form-label">Nombre</label>
-                  <input type="text" class="form-control" id="name" placeholder="Su nombre" required>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Teléfono o correo</label>
-                  <input type="text" class="form-control" id="contact" placeholder="Teléfono o email" required>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Mensaje</label>
-                  <textarea class="form-control" id="message" rows="4" placeholder="Cuéntenos qué necesita" required></textarea>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <button class="btn btn-primary" type="submit">Enviar mensaje</button>
-                  <small class="text-muted">También puede escribir por WhatsApp</small>
-                </div>
-              </form>
-              <div id="formAlert" class="alert alert-success mt-3 d-none" role="alert">
-                Gracias, su mensaje fue enviado (simulado). Nos contactaremos pronto.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal: Galería con carrusel moderno -->
-  <div class="modal fade modal-gallery" id="propertyModal" tabindex="-1" aria-labelledby="propertyModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header border-0">
-          <h5 class="modal-title" id="propertyModalLabel">Propiedad</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Carousel -->
-          <div id="propertyCarousel" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-inner" id="carouselInner"></div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#propertyCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#propertyCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Siguiente</span>
-            </button>
-            <div class="mt-3" id="carouselIndicatorsRow" style="min-height:76px;"></div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <a id="modalCallBtn" href="tel:+573156204374" class="btn btn-outline-primary me-auto"><i class="bi bi-telephone"></i> Llamar</a>
-          <a id="modalWhatsappBtn" href="https://wa.me/573156204374" target="_blank" rel="noopener" class="btn btn-success"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="py-4 bg-secondary text-light">
-    <div class="container d-flex justify-content-between align-items-center">
-      <small>© <span id="year"></span> Master Empresas. Todos los derechos reservados.</small>
-      <div>
-        <a class="text-light me-3" href="#vision-mision">Visión</a>
-        <a class="text-light me-3" href="#quienes-somos">Quiénes</a>
-        <a class="text-light" href="#contacto">Contacto</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Bootstrap 5 JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-  // ==========================
-  // CONFIG: propiedades (organizado)
-  // Cada propiedad tiene: id, title, price, features, images[], available (bool)
-  // The user provided a main image and asked to add several specific Supabase-hosted images
-  // into the carousel only; those URLs have been placed into the first property's images array (after main).
-  // ==========================
-  const properties = [
-    {
-      id: 'p1',
-      title: 'Casa familiar en zona residencial / Jamundi (Barrio la pradera)',
-      price: '$1.100.000 / mes',
-      features: '3 habitaciones · 3 baños · Garaje · Jardín',
-      available: true,
-      // main image first (as requested), then the additional Supabase links (only used in carousel)
-      images: [
-        'https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/1.jpg',
-        'https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/Imagen%20de%20WhatsApp%202025-10-30%20a%20las%2009.45.42_4a16d75b.jpg',
-        'https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/Imagen%20de%20WhatsApp%202025-10-30%20a%20las%2009.45.43_295639c9.jpg',
-        'https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/Imagen%20de%20WhatsApp%202025-10-30%20a%20las%2009.45.43_6f5cd416.jpg',
-        'https://sqccfapjzvzavosepsyf.supabase.co/storage/v1/object/public/legal_simonds/Imagen%20de%20WhatsApp%202025-10-30%20a%20las%2009.45.43_eb47a438.jpg'
-      ]
-    },
- 
-  ];
-
-  // Set year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Render property cards from the structured array
-  (function renderProperties() {
-    const grid = document.getElementById('propertiesGrid');
-    grid.innerHTML = '';
-    properties.forEach(prop => {
-      const col = document.createElement('div');
-      col.className = 'col-md-6 col-lg-4';
-
-      // Card markup
-      const card = document.createElement('div');
-      card.className = 'card shadow-sm h-100';
-
-      // Image wrapper so we can overlay badge
-      const imgWrap = document.createElement('div');
-      imgWrap.className = 'img-wrap';
-
-      // status badge (only if available)
-      if (prop.available) {
-        const badge = document.createElement('div');
-        badge.className = 'status-badge';
-        badge.innerHTML = `<i class="bi bi-check-circle"></i> Disponible`;
-        imgWrap.appendChild(badge);
-      }
-
-      // main image (first in images array)
-      const img = document.createElement('img');
-      img.className = 'card-img-top img-clickable';
-      img.alt = prop.title;
-      img.src = prop.images[0] || '';
-      img.loading = 'lazy';
-      // store structured data in dataset (stringified JSON) for easier reading later
-      img.dataset.prop = JSON.stringify(prop);
-
-      // Make image accessible as button
-      img.setAttribute('role', 'button');
-      img.style.objectFit = 'cover';
-      img.style.height = '220px';
-      imgWrap.appendChild(img);
-
-      // Card body
-      const body = document.createElement('div');
-      body.className = 'card-body d-flex flex-column';
-
-      const h5 = document.createElement('h5');
-      h5.className = 'card-title';
-      h5.textContent = prop.title;
-
-      const pFeat = document.createElement('p');
-      pFeat.className = 'card-text text-muted';
-      pFeat.textContent = prop.features;
-
-      const footer = document.createElement('div');
-      footer.className = 'mt-auto d-flex justify-content-between align-items-center';
-
-      const price = document.createElement('strong');
-      price.className = 'text-primary';
-      price.textContent = prop.price;
-
-      const callBtn = document.createElement('a');
-      callBtn.className = 'btn btn-sm btn-outline-primary';
-      callBtn.href = 'tel:+573156204374';
-      callBtn.textContent = 'Llamar';
-
-      footer.appendChild(price);
-      footer.appendChild(callBtn);
-
-      body.appendChild(h5);
-      body.appendChild(pFeat);
-      body.appendChild(footer);
-
-      card.appendChild(imgWrap);
-      card.appendChild(body);
-      col.appendChild(card);
-      grid.appendChild(col);
-    });
-
-    // After DOM insertion, wire click handlers to .img-clickable
-    document.querySelectorAll('.img-clickable').forEach(imgEl => {
-      imgEl.addEventListener('click', function() {
-        // Retrieve property object from dataset
-        let prop;
-        try {
-          prop = JSON.parse(this.dataset.prop || '{}');
-        } catch(e) {
-          prop = { title: this.alt || 'Propiedad', images: [this.src] };
-        }
-        openGalleryModal(prop);
-      });
-    });
-  })();
-
-  // Modal + Carousel logic (re-usable)
-  (function setupModal() {
-    const modalEl = document.getElementById('propertyModal');
-    const bsModal = new bootstrap.Modal(modalEl);
-    const carouselInner = document.getElementById('carouselInner');
-    const indicatorsRow = document.getElementById('carouselIndicatorsRow');
-    const modalTitle = document.getElementById('propertyModalLabel');
-    const modalWhatsappBtn = document.getElementById('modalWhatsappBtn');
-
-    // Build slides and thumbs then show modal
-    window.openGalleryModal = function(prop) {
-      const images = Array.isArray(prop.images) && prop.images.length ? prop.images : [prop.image || prop.src || ''];
-      modalTitle.textContent = prop.title || 'Propiedad';
-      modalWhatsappBtn.href = 'https://wa.me/573156204374?text=' + encodeURIComponent('Buen día, quisiera consultar sobre: ' + (prop.title || ''));
-
-      // clear
-      carouselInner.innerHTML = '';
-      indicatorsRow.innerHTML = '';
-
-      // create slides
-      images.forEach((url, i) => {
-        const slide = document.createElement('div');
-        slide.className = 'carousel-item' + (i === 0 ? ' active' : '');
-        const img = document.createElement('img');
-        img.src = url;
-        img.alt = `${prop.title} - foto ${i+1}`;
-        img.loading = 'lazy';
-        slide.appendChild(img);
-        carouselInner.appendChild(slide);
-      });
-
-      // thumbs
-      const thumbsContainer = document.createElement('div');
-      thumbsContainer.className = 'thumbs-row';
-      images.forEach((url, i) => {
-        const thumb = document.createElement('div');
-        thumb.className = 'thumb' + (i === 0 ? ' active' : '');
-        thumb.dataset.index = i;
-        thumb.innerHTML = `<img src="${url}" alt="mini ${i+1}">`;
-        thumb.addEventListener('click', () => {
-          const carouselEl = document.querySelector('#propertyCarousel');
-          const carousel = bootstrap.Carousel.getInstance(carouselEl) || new bootstrap.Carousel(carouselEl, { interval: false, ride: false });
-          carousel.to(i);
-          // update active visuals
-          thumbsContainer.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-          thumb.classList.add('active');
-        });
-        thumbsContainer.appendChild(thumb);
-      });
-      indicatorsRow.appendChild(thumbsContainer);
-
-      // setup carousel instance
-      const carouselEl = document.getElementById('propertyCarousel');
-      try { const prev = bootstrap.Carousel.getInstance(carouselEl); if (prev) prev.dispose(); } catch(e) {}
-      const carousel = new bootstrap.Carousel(carouselEl, { interval: false, touch: true, ride: false });
-
-      // Sync thumb when slide changes
-      carouselEl.addEventListener('slid.bs.carousel', function(ev) {
-        const idx = ev.to;
-        const thumbs = indicatorsRow.querySelectorAll('.thumb');
-        thumbs.forEach(t => t.classList.remove('active'));
-        const active = indicatorsRow.querySelector('.thumb[data-index="'+idx+'"]');
-        if (active) active.classList.add('active');
-        if (active && active.scrollIntoView) active.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-      });
-
-      bsModal.show();
-    };
-
-    // cleanup on modal hide
-    modalEl.addEventListener('hidden.bs.modal', function(){
-      const carouselEl = document.getElementById('propertyCarousel');
-      try { const inst = bootstrap.Carousel.getInstance(carouselEl); if (inst) inst.dispose(); } catch(e){}
-      carouselInner.innerHTML = '';
-      indicatorsRow.innerHTML = '';
-    });
-  })();
-
-  // Contact form (simulado)
-  (function(){
-    const form = document.getElementById('contactForm');
-    const alertEl = document.getElementById('formAlert');
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const contact = document.getElementById('contact').value.trim();
-      const message = document.getElementById('message').value.trim();
-      if (!name || !contact || !message) {
-        alert('Por favor complete todos los campos.');
-        return;
-      }
-      alertEl.classList.remove('d-none');
-      setTimeout(()=> { alertEl.classList.add('d-none'); form.reset(); }, 3000);
-    });
-  })();
-
-  // Smooth scroll for internal links
-  document.querySelectorAll('a.nav-link, a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          const offset = 70;
-          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-          window.scrollTo({ top, behavior: 'smooth' });
-          const navbarToggler = document.querySelector('.navbar-collapse.show');
-          if (navbarToggler) new bootstrap.Collapse(navbarToggler).hide();
-        }
-      }
-    });
-  });
-  </script>
 </body>
 </html>
